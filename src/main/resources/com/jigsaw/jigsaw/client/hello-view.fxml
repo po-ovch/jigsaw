@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane prefHeight="276.0" prefWidth="376.0" style="-fx-background-color: #84A169" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jigsaw.jigsaw.client.HelloController">
+
+
+    <VBox fx:id="registerPane" alignment="CENTER" layoutX="20.0" layoutY="17.0" prefHeight="245.0" prefWidth="340.0" spacing="10.0">
+        <Label style="-fx-font-family: Arial; -fx-font-weight: Bold; -fx-font-size: 20" text="Welcome to Jigsaw client!" />
+        <Label prefHeight="46.0" prefWidth="194.0" style="-fx-font-family: Arial;     -fx-font-size: 12" text="To begin game you need to specify &#10;your nickname:" textAlignment="CENTER" />
+        <Pane prefHeight="52.0" prefWidth="280.0">
+            <Label layoutX="25.0" layoutY="19.0" style="-fx-font-family: Arial" text="Player's name" />
+            <TextField fx:id="playerNameField" layoutX="117.0" layoutY="14.0" />
+        </Pane>
+        <Button onAction="#onSubmitButtonClick" text="Submit" />
+    </VBox>
+
+    <VBox fx:id="awaitPane" alignment="CENTER" layoutX="15.0" layoutY="10.0" prefHeight="257.0" prefWidth="348.0" visible="false">
+        <Label layoutX="83.0" layoutY="75.0" prefHeight="90.0" prefWidth="168.0" style="-fx-font-family: Arial;         -fx-font-size: 12" text="Not all players are ready for the&#10; game. Please wait until &#10;other players connect." textAlignment="CENTER" />
+    </VBox>
+
+    <VBox fx:id="startGamePane" alignment="CENTER" layoutX="14.0" layoutY="17.0" prefHeight="245.0" prefWidth="348.0" spacing="10" visible="false">
+        <Label prefHeight="46.0" prefWidth="165.0" style="-fx-font-family: Arial;          -fx-font-size: 12" text="Game is ready. &#10;Press Start to begin the game." textAlignment="CENTER" />
+        <Button fx:id="startGameButton" onAction="#onStartButtonClick" text="Start" />
+        <Button onAction="#onTopButtonClick" text="Top players" />
+    </VBox>
+
+    <VBox fx:id="resultPane" alignment="CENTER" layoutX="16.0" layoutY="16.0" prefHeight="245.0" prefWidth="348.0" spacing="10" visible="false">
+        <Label style="-fx-font-family: Arial; -fx-font-weight: Bold; -fx-font-size: 20" text="Results" />
+        <Label fx:id="resultPlayerNameLabel" style="-fx-font-family: Arial; -fx-font-weight: Bold; -fx-font-size: 13" />
+        <Label fx:id="resultLabel" style="-fx-font-family: Arial; -fx-font-size: 12" />
+        <Button onAction="#onStartButtonClick" text="Start" />
+        <Button onAction="#onTopButtonClick" text="Top players" />
+        <Button fx:id="quitButton" mnemonicParsing="false" onAction="#onQuitButtonClick" text="Quit" />
+    </VBox>
+
+    <VBox fx:id="serverDisconnectedPane" alignment="CENTER" layoutX="15.0" layoutY="14.0" prefHeight="245.0" prefWidth="348.0" visible="false">
+        <Label prefHeight="44.0" prefWidth="243.0" style="-fx-font-family: Arial;     -fx-font-size: 12" text="Server was disconnected. Try playing later" textAlignment="CENTER" />
+    </VBox>
+
+    <VBox fx:id="awaitFinishPane" alignment="CENTER" layoutX="11.0" layoutY="14.0" prefHeight="257.0" prefWidth="354.0" visible="false">
+        <Label prefHeight="44.0" prefWidth="153.0" style="-fx-font-family: Arial;     -fx-font-size: 12" text="Waiting until your rival finish" textAlignment="CENTER" />
+    </VBox>
+
+    <VBox fx:id="partnerDisconnectedPane" alignment="CENTER" layoutX="8.0" layoutY="7.0" prefHeight="257.0" prefWidth="360.0" visible="false">
+        <Label prefHeight="44.0" prefWidth="181.0" style="-fx-font-family: Arial; -fx-font-size: 12" text="Would you like to wait for partner &#10;and play again or quit?" textAlignment="CENTER" />
+        <Button onAction="#onWaitForPartnerButtonClick" prefWidth="111.0" text="Wait for partner">
+         <VBox.margin>
+            <Insets bottom="10.0" top="10.0" />
+         </VBox.margin></Button>
+        <Button mnemonicParsing="false" onAction="#onQuitButtonClick" text="Quit" />
+    </VBox>
+
+    <VBox fx:id="topPlayersPane" alignment="CENTER" layoutX="8.0" layoutY="7.0" prefHeight="266.0" prefWidth="360.0" visible="false">
+        <Label fx:id="problemTopLabel" text="There is some problems with obtaining top list. Try again later" visible="false" />
+        <TableView fx:id="tableView" />
+        <Button onAction="#onReturnButtonClick" text="Return" />
+    </VBox>
+</Pane>
