@@ -16,7 +16,7 @@ public class DbUtils {
             + "END_TIME TIMESTAMP NOT NULL, "
             + "MOVES_MADE INT NOT NULL, "
             + "TIME_SPENT DOUBLE NOT NULL) ";
-    // minor change
+    // master push again
 
     private static boolean checkTable(Connection conn) throws SQLException {
         try {
