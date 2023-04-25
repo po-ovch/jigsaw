@@ -1,5 +1,6 @@
 package com.jigsaw.jigsaw.client;
 
+import com.jigsaw.jigsaw.client.viewControllers.GameController;
 import javafx.scene.input.TransferMode;
 import javafx.scene.paint.Color;
 
@@ -34,7 +35,7 @@ public class PlayingCell extends Rectangle {
                 }
                 GameController.madeMovesCounter++;
                 GameController.figuresParentPane.getChildren().clear();
-                GameController.getNewFigure();
+                SharedComponents.server.requestFigure();
             } else {
                 source.unputFigure();
             }

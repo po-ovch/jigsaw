@@ -1,5 +1,6 @@
 package com.jigsaw.jigsaw.server;
 
+import com.jigsaw.jigsaw.server.viewControllers.StartController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
