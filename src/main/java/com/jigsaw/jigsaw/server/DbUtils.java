@@ -1,6 +1,6 @@
 package com.jigsaw.jigsaw.server;
 
-import com.jigsaw.jigsaw.Result;
+import com.jigsaw.jigsaw.endpoint.shared.GameStatistics;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -16,7 +16,6 @@ public class DbUtils {
             + "END_TIME TIMESTAMP NOT NULL, "
             + "MOVES_MADE INT NOT NULL, "
             + "TIME_SPENT DOUBLE NOT NULL) ";
-    // master push again
 
     private static boolean checkTable(Connection conn) throws SQLException {
         try {
@@ -37,7 +36,7 @@ public class DbUtils {
         return true;
     }
 
-    private static List<Result> getResults() {
+    private static List<GameStatistics> getResults() {
         String driver = "org.apache.derby.jdbc.EmbeddedDriver";
         String dbName = "resultsDB";
         String connectionURL = "jdbc:derby:.\\DERBY\\" + dbName + ";create=true";
@@ -50,9 +49,9 @@ public class DbUtils {
             }
 
             var resultsFromDb = statement.executeQuery("select * from RESULTS_LIST");
-            var results = new ArrayList<Result>();
+            var results = new ArrayList<GameStatistics>();
             while (resultsFromDb.next()) {
-                var result = new Result(resultsFromDb.getString("LOGIN"), resultsFromDb.getInt("MOVES_MADE"),
+                var result = new GameStatistics(resultsFromDb.getString("LOGIN"), resultsFromDb.getInt("MOVES_MADE"),
                         resultsFromDb.getString("TIME_SPENT"), resultsFromDb.getString("END_TIME"));
                 results.add(result);
             }
@@ -62,19 +61,19 @@ public class DbUtils {
         }
     }
 
-    public static List<Result> getTop() {
+    public static List<GameStatistics> getTop() {
         var results = getResults();
         if (results == null) {
             return null;
         }
-        results.sort(Comparator.comparing(Result::getEndTimeDt));
-        results.sort(Comparator.comparing(Result::getPlayedTimeDouble));
-        results.sort(Comparator.comparing(Result::getFiguresMappedNum));
+        results.sort(Comparator.comparing(GameStatistics::getEndTimeDt));
+        results.sort(Comparator.comparing(GameStatistics::getPlayedTimeDouble));
+        results.sort(Comparator.comparing(GameStatistics::getFiguresMappedNum));
         Collections.reverse(results);
         return results.stream().limit(10).toList();
     }
 
-    public static void saveResult(Result result) {
+    public static void saveResult(GameStatistics gameStatistics) {
         String driver = "org.apache.derby.jdbc.EmbeddedDriver";
         String dbName = "resultsDB";
         String connectionURL = "jdbc:derby:.\\DERBY\\" + dbName + ";create=true";
@@ -88,10 +87,10 @@ public class DbUtils {
 
             var preparedStatement = conn.prepareStatement("insert into RESULTS_LIST(LOGIN, END_TIME, MOVES_MADE, TIME_SPENT) " +
                     "values (?, ?, ?, ?)");
-            preparedStatement.setString(1, result.getPlayerName());
-            preparedStatement.setString(2, result.getEndTime());
-            preparedStatement.setInt(3, result.getFiguresMappedNum());
-            preparedStatement.setString(4, result.getPlayedTime());
+            preparedStatement.setString(1, gameStatistics.getPlayerName());
+            preparedStatement.setString(2, gameStatistics.getEndTime());
+            preparedStatement.setInt(3, gameStatistics.getFiguresMappedNum());
+            preparedStatement.setString(4, gameStatistics.getPlayedTime());
 
             preparedStatement.executeUpdate();
 

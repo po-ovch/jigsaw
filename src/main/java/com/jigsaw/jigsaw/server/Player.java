@@ -1,0 +1,56 @@
+package com.jigsaw.jigsaw.server;
+
+import com.jigsaw.jigsaw.endpoint.messages.FigureResponseMessage;
+import com.jigsaw.jigsaw.endpoint.messages.GameStatusMessage;
+import com.jigsaw.jigsaw.endpoint.messages.ResultMessage;
+import com.jigsaw.jigsaw.endpoint.shared.FigureInfo;
+import com.jigsaw.jigsaw.endpoint.shared.GameSettings;
+import com.jigsaw.jigsaw.endpoint.shared.GameStatus;
+import com.jigsaw.jigsaw.endpoint.shared.Result;
+import jakarta.websocket.EncodeException;
+import jakarta.websocket.Session;
+
+import java.io.IOException;
+
+public class Player {
+    private final Session session;
+    public int gotFiguresNumber;
+    public String playerName;
+    public int playerIndex;
+
+    public Player(String playerName, int playerIndex, Session session) {
+        this.playerName = playerName;
+        this.session = session;
+        this.gotFiguresNumber = 0;
+        this.playerIndex = playerIndex;
+    }
+
+    public void waitForStart() {
+        var message = new GameStatusMessage(playerName, playerIndex, GameStatus.Wait, null, null);
+        sendObjectSafely(message);
+    }
+
+    public void startGame(GameSettings settings, FigureInfo firstFigure) {
+        var message = new GameStatusMessage(playerName, playerIndex, GameStatus.Play, settings, firstFigure);
+        sendObjectSafely(message);
+    }
+
+    public void giveFigure(FigureInfo figureInfo) {
+        this.gotFiguresNumber++;
+        var message = new FigureResponseMessage(figureInfo);
+        sendObjectSafely(message);
+    }
+
+    public void notifyAboutResults(Result result) {
+        var message = new ResultMessage(result);
+        sendObjectSafely(message);
+    }
+
+    private void sendObjectSafely(Object obj) {
+        try {
+            session.getBasicRemote().sendObject(obj);
+        } catch (IOException | EncodeException e) {
+            e.printStackTrace();
+        }
+    }
+}
