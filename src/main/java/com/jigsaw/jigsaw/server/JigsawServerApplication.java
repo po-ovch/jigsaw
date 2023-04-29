@@ -11,6 +11,9 @@ import java.io.IOException;
 public class JigsawServerApplication extends Application {
     public static Stage startStage;
 
+    public static void main(String[] args) {
+        launch();
+    }
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(JigsawServerApplication.class.getResource("start-view.fxml"));
@@ -19,14 +22,12 @@ public class JigsawServerApplication extends Application {
         stage.setTitle("Jigsaw server");
         stage.setScene(scene);
         stage.setOnCloseRequest(windowEvent -> onClose());
+
         stage.show();
 
         startStage = stage;
     }
 
-    public static void main(String[] args) {
-        launch();
-    }
 
     private static void onClose() {
         if (StartController.server != null) {

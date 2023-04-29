@@ -2,7 +2,7 @@ module com.jigsaw.jigsaw {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
-    requires javax.websocket.api;
+//    requires javax.websocket.api;
     requires org.glassfish.tyrus.core;
     requires org.glassfish.tyrus.server;
     requires org.glassfish.tyrus.container.grizzly.server;

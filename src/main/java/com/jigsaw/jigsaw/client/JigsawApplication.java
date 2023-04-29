@@ -12,6 +12,10 @@ public class JigsawApplication extends Application {
     public static Stage startStage;
     public static SocketWrapper clientSocket;
 
+    public static void main(String[] args) {
+        launch();
+    }
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(JigsawApplication.class.getResource("hello-view.fxml"));
@@ -34,7 +38,4 @@ public class JigsawApplication extends Application {
         clientSocket.close();
     }
 
-    public static void main(String[] args) {
-        launch();
-    }
 }
