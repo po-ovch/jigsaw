@@ -1,7 +1,6 @@
 package com.jigsaw.jigsaw.server.viewControllers;
 
-import com.jigsaw.jigsaw.SocketWrapper;
-import com.jigsaw.jigsaw.server.web.JigsawServerEndpoint;
+import com.jigsaw.jigsaw.server.webControllers.JigsawServerEndpoint;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Spinner;
 import javafx.scene.layout.VBox;
@@ -19,8 +18,6 @@ public class StartController {
 
     public static ServerSocket server;
     public static Thread gameSetupThread;
-
-    public static final List<SocketWrapper> clientSockets = Collections.synchronizedList(new ArrayList<>());
 
     public VBox mistakePane;
     public VBox runningPane;

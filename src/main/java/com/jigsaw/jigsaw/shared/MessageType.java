@@ -1,4 +1,4 @@
-package com.jigsaw.jigsaw.endpoint;
+package com.jigsaw.jigsaw.shared;
 
 public enum MessageType {
     Register,

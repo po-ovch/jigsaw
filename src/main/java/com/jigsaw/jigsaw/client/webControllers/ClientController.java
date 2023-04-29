@@ -1,11 +1,11 @@
-package com.jigsaw.jigsaw.client.web;
+package com.jigsaw.jigsaw.client.webControllers;
 
 import com.jigsaw.jigsaw.client.SharedComponents;
 import com.jigsaw.jigsaw.client.viewControllers.GameController;
 import com.jigsaw.jigsaw.client.viewControllers.HelloController;
-import com.jigsaw.jigsaw.endpoint.shared.FigureInfo;
-import com.jigsaw.jigsaw.endpoint.shared.GameSettings;
-import com.jigsaw.jigsaw.endpoint.shared.Result;
+import com.jigsaw.jigsaw.shared.entities.FigureInfo;
+import com.jigsaw.jigsaw.shared.entities.GameSettings;
+import com.jigsaw.jigsaw.shared.entities.Result;
 
 public class ClientController {
     public void waitForOtherPlayers() {

@@ -1,6 +1,6 @@
 package com.jigsaw.jigsaw.server;
 
-import com.jigsaw.jigsaw.endpoint.shared.GameStatistics;
+import com.jigsaw.jigsaw.shared.entities.GameStatistics;
 
 import java.sql.*;
 import java.util.ArrayList;

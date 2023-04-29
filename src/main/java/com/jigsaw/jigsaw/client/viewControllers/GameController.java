@@ -1,8 +1,8 @@
 package com.jigsaw.jigsaw.client.viewControllers;
 
 import com.jigsaw.jigsaw.client.*;
-import com.jigsaw.jigsaw.endpoint.shared.FigureGenerator;
-import com.jigsaw.jigsaw.endpoint.shared.FigureInfo;
+import com.jigsaw.jigsaw.shared.entities.FigureGenerator;
+import com.jigsaw.jigsaw.shared.entities.FigureInfo;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -12,7 +12,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.util.Duration;
 
-import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

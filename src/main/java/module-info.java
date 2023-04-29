@@ -22,14 +22,14 @@ module com.jigsaw.jigsaw {
     opens com.jigsaw.jigsaw.client.viewControllers to javafx.fxml;
     exports com.jigsaw.jigsaw.server.viewControllers;
     opens com.jigsaw.jigsaw.server.viewControllers to javafx.fxml;
-    exports com.jigsaw.jigsaw.endpoint;
-    opens com.jigsaw.jigsaw.endpoint to javafx.fxml;
-    exports com.jigsaw.jigsaw.client.web;
-    opens com.jigsaw.jigsaw.client.web to javafx.fxml;
-    exports com.jigsaw.jigsaw.server.web;
-    opens com.jigsaw.jigsaw.server.web to javafx.fxml;
-    exports com.jigsaw.jigsaw.endpoint.messages;
-    opens com.jigsaw.jigsaw.endpoint.messages to javafx.fxml;
-    exports com.jigsaw.jigsaw.endpoint.shared;
-    opens com.jigsaw.jigsaw.endpoint.shared to javafx.fxml;
+    exports com.jigsaw.jigsaw.shared;
+    opens com.jigsaw.jigsaw.shared to javafx.fxml;
+    exports com.jigsaw.jigsaw.client.webControllers;
+    opens com.jigsaw.jigsaw.client.webControllers to javafx.fxml;
+    exports com.jigsaw.jigsaw.server.webControllers;
+    opens com.jigsaw.jigsaw.server.webControllers to javafx.fxml;
+    exports com.jigsaw.jigsaw.shared.messages;
+    opens com.jigsaw.jigsaw.shared.messages to javafx.fxml;
+    exports com.jigsaw.jigsaw.shared.entities;
+    opens com.jigsaw.jigsaw.shared.entities to javafx.fxml;
 }
