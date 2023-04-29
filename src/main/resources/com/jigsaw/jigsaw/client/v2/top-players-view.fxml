@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane prefHeight="276.0" prefWidth="376.0" style="-fx-background-color: #84A169"
+      xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.jigsaw.jigsaw.client.viewControllers.HelloController">
+
+    <VBox fx:id="topPlayersPane" alignment="CENTER" layoutX="8.0" layoutY="7.0" prefHeight="266.0"
+          prefWidth="360.0">
+        <Label fx:id="problemTopLabel"
+               text="There is some problems with obtaining top list. Try again later"
+              />
+        <TableView fx:id="tableView"/>
+        <Button onAction="#onReturnButtonClick" text="Return"/>
+    </VBox>
+</Pane>
