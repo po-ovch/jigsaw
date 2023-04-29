@@ -1,8 +1,8 @@
-package com.jigsaw.jigsaw.server.web;
+package com.jigsaw.jigsaw.server.webControllers;
 
-import com.jigsaw.jigsaw.endpoint.messages.FigureRequestMessage;
-import com.jigsaw.jigsaw.endpoint.messages.GameStatisticsMessage;
-import com.jigsaw.jigsaw.endpoint.messages.RegisterMessage;
+import com.jigsaw.jigsaw.shared.messages.FigureRequestMessage;
+import com.jigsaw.jigsaw.shared.messages.GameStatisticsMessage;
+import com.jigsaw.jigsaw.shared.messages.RegisterMessage;
 import com.jigsaw.jigsaw.server.DbUtils;
 import jakarta.websocket.Session;
 

@@ -1,4 +1,4 @@
-package com.jigsaw.jigsaw.endpoint.shared;
+package com.jigsaw.jigsaw.shared.entities;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

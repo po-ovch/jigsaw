@@ -1,4 +1,4 @@
-package com.jigsaw.jigsaw.endpoint;
+package com.jigsaw.jigsaw.shared;
 
 import jakarta.websocket.DecodeException;
 import jakarta.websocket.Decoder;

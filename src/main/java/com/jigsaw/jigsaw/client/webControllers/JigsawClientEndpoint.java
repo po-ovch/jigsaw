@@ -1,15 +1,14 @@
-package com.jigsaw.jigsaw.client.web;
+package com.jigsaw.jigsaw.client.webControllers;
 
 import com.jigsaw.jigsaw.client.SharedComponents;
-import com.jigsaw.jigsaw.client.viewControllers.HelloController;
-import com.jigsaw.jigsaw.endpoint.Message;
-import com.jigsaw.jigsaw.endpoint.MessageDecoder;
-import com.jigsaw.jigsaw.endpoint.MessageEncoder;
-import com.jigsaw.jigsaw.endpoint.MessageType;
-import com.jigsaw.jigsaw.endpoint.messages.FigureResponseMessage;
-import com.jigsaw.jigsaw.endpoint.messages.GameStatusMessage;
-import com.jigsaw.jigsaw.endpoint.messages.ResultMessage;
-import com.jigsaw.jigsaw.endpoint.shared.GameStatus;
+import com.jigsaw.jigsaw.shared.Message;
+import com.jigsaw.jigsaw.shared.MessageDecoder;
+import com.jigsaw.jigsaw.shared.MessageEncoder;
+import com.jigsaw.jigsaw.shared.MessageType;
+import com.jigsaw.jigsaw.shared.messages.FigureResponseMessage;
+import com.jigsaw.jigsaw.shared.messages.GameStatusMessage;
+import com.jigsaw.jigsaw.shared.messages.ResultMessage;
+import com.jigsaw.jigsaw.shared.entities.GameStatus;
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.OnMessage;
 

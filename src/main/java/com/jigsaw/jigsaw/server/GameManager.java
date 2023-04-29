@@ -1,6 +1,6 @@
 package com.jigsaw.jigsaw.server;
 
-import com.jigsaw.jigsaw.endpoint.shared.*;
+import com.jigsaw.jigsaw.shared.entities.*;
 import jakarta.websocket.Session;
 
 import java.util.ArrayList;

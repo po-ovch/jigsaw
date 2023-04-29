@@ -1,11 +1,9 @@
 package com.jigsaw.jigsaw.client.viewControllers;
 
-import com.jigsaw.jigsaw.endpoint.shared.GameStatistics;
+import com.jigsaw.jigsaw.shared.entities.GameStatistics;
 import com.jigsaw.jigsaw.client.JigsawApplication;
-import com.jigsaw.jigsaw.endpoint.shared.Result;
+import com.jigsaw.jigsaw.shared.entities.Result;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -196,18 +194,8 @@ public class HelloController {
         setPanesInvisible();
         problemTopLabel.setVisible(false);
         topPlayersPane.setVisible(true);
-        var writer = JigsawApplication.clientSocket.getWriter();
-        var reader = JigsawApplication.clientSocket.getReader();
 
-        try {
-            writer.write("topPlayers\n");
-            writer.flush();
-        } catch (IOException e) {
-            serverDisconnectedPane.setVisible(true);
-            return;
-        }
-
-        ObservableList<GameStatistics> gameStatistics = FXCollections.observableArrayList();
+        /*ObservableList<GameStatistics> gameStatistics = FXCollections.observableArrayList();
         while (true) {
             try {
                 var result = GameStatistics.readResult(reader);
@@ -225,7 +213,7 @@ public class HelloController {
                 return;
             }
         }
-        tableView.setItems(gameStatistics);
+        tableView.setItems(gameStatistics);*/
     }
 
     private static void setPanesInvisible() {

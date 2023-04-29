@@ -1,9 +1,9 @@
-package com.jigsaw.jigsaw.client.web;
+package com.jigsaw.jigsaw.client.webControllers;
 
-import com.jigsaw.jigsaw.endpoint.messages.FigureRequestMessage;
-import com.jigsaw.jigsaw.endpoint.messages.GameStatisticsMessage;
-import com.jigsaw.jigsaw.endpoint.messages.RegisterMessage;
-import com.jigsaw.jigsaw.endpoint.shared.GameStatistics;
+import com.jigsaw.jigsaw.shared.messages.FigureRequestMessage;
+import com.jigsaw.jigsaw.shared.messages.GameStatisticsMessage;
+import com.jigsaw.jigsaw.shared.messages.RegisterMessage;
+import com.jigsaw.jigsaw.shared.entities.GameStatistics;
 import jakarta.websocket.EncodeException;
 import jakarta.websocket.Session;
 import org.glassfish.tyrus.client.ClientManager;
