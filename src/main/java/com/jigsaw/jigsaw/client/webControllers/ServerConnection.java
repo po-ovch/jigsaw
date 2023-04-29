@@ -25,8 +25,16 @@ public class ServerConnection {
         }
     }
 
+    public boolean isOpen() {
+        if (session == null) {
+            return false;
+        }
+
+        return session.isOpen();
+    }
+
     public void registerPlayer(String playerName) {
-        var message  = new RegisterMessage(playerName);
+        var message = new RegisterMessage(playerName);
         sendObjectSafely(message);
     }
 
@@ -45,6 +53,10 @@ public class ServerConnection {
     }
 
     private void sendObjectSafely(Object obj) {
+        if (session == null) {
+            System.out.println("Session is not created, cannot send");
+            return;
+        }
         try {
             session.getBasicRemote().sendObject(obj);
         } catch (IOException | EncodeException e) {

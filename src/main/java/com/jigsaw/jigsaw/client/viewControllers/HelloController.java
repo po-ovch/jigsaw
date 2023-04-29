@@ -67,6 +67,13 @@ public class HelloController {
             return;
         }
         server.registerPlayer(playerNameField.getText());
+        if (!server.isOpen()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Server connection");
+            alert.setHeaderText("Can't connect to the server, check if it is running");
+            alert.show();
+            return;
+        }
         createTable();
     }
 
