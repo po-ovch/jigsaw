@@ -5,8 +5,10 @@
 
 <?import com.jigsaw.jigsaw.client.Table?>
 
-<AnchorPane fx:id="pane" prefHeight="296.0" prefWidth="490.0" xmlns="http://javafx.com/javafx/11.0.2"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jigsaw.jigsaw.client.viewControllers.GameController"
+<AnchorPane fx:id="pane" prefHeight="350.0" prefWidth="490.0"
+            xmlns="http://javafx.com/javafx/11.0.2"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.jigsaw.jigsaw.client.viewControllers.GameController"
             style="-fx-background-color: #84A169"
 >
     <VBox fx:id="infoBox">
@@ -15,7 +17,7 @@
     </VBox>
 
     <Button fx:id="endGameButton" text="End game" mnemonicParsing="false" prefWidth="100"
-    onAction="#onEndButtonClick">
+            onAction="#onEndButtonClick">
         <AnchorPane.rightAnchor>49</AnchorPane.rightAnchor>
         <AnchorPane.topAnchor>65</AnchorPane.topAnchor>
     </Button>
