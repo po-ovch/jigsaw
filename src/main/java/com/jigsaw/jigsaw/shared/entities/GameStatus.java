@@ -1,4 +1,4 @@
-package com.jigsaw.jigsaw.shared.entites;
+package com.jigsaw.jigsaw.shared.entities;
 
 public enum GameStatus {
     Wait,

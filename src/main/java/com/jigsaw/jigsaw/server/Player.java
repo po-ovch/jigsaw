@@ -3,10 +3,10 @@ package com.jigsaw.jigsaw.server;
 import com.jigsaw.jigsaw.shared.messages.FigureResponseMessage;
 import com.jigsaw.jigsaw.shared.messages.GameStatusMessage;
 import com.jigsaw.jigsaw.shared.messages.ResultMessage;
-import com.jigsaw.jigsaw.shared.entites.FigureInfo;
-import com.jigsaw.jigsaw.shared.entites.GameSettings;
-import com.jigsaw.jigsaw.shared.entites.GameStatus;
-import com.jigsaw.jigsaw.shared.entites.Result;
+import com.jigsaw.jigsaw.shared.entities.FigureInfo;
+import com.jigsaw.jigsaw.shared.entities.GameSettings;
+import com.jigsaw.jigsaw.shared.entities.GameStatus;
+import com.jigsaw.jigsaw.shared.entities.Result;
 import jakarta.websocket.EncodeException;
 import jakarta.websocket.Session;
 

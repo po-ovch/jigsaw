@@ -1,9 +1,9 @@
 package com.jigsaw.jigsaw.shared.messages;
 
 import com.jigsaw.jigsaw.shared.MessageType;
-import com.jigsaw.jigsaw.shared.entites.FigureInfo;
-import com.jigsaw.jigsaw.shared.entites.GameSettings;
-import com.jigsaw.jigsaw.shared.entites.GameStatus;
+import com.jigsaw.jigsaw.shared.entities.FigureInfo;
+import com.jigsaw.jigsaw.shared.entities.GameSettings;
+import com.jigsaw.jigsaw.shared.entities.GameStatus;
 import com.jigsaw.jigsaw.shared.Message;
 
 public class GameStatusMessage extends Message {

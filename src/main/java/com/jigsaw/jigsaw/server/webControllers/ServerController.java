@@ -1,4 +1,4 @@
-package com.jigsaw.jigsaw.server.web;
+package com.jigsaw.jigsaw.server.webControllers;
 
 import com.jigsaw.jigsaw.shared.messages.FigureRequestMessage;
 import com.jigsaw.jigsaw.shared.messages.GameStatisticsMessage;

@@ -1,8 +1,8 @@
 package com.jigsaw.jigsaw.client.viewControllers;
 
 import com.jigsaw.jigsaw.client.*;
-import com.jigsaw.jigsaw.shared.entites.FigureGenerator;
-import com.jigsaw.jigsaw.shared.entites.FigureInfo;
+import com.jigsaw.jigsaw.shared.entities.FigureGenerator;
+import com.jigsaw.jigsaw.shared.entities.FigureInfo;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;

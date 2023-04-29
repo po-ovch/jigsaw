@@ -32,7 +32,5 @@ public class MessageEncoder implements Encoder.Binary<Message> {
             e.printStackTrace();
         }
         return ByteBuffer.wrap(out.toByteArray());
-        //return JsonUtils.getJson(object);
-        //return null;
     }
 }

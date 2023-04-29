@@ -1,4 +1,4 @@
-package com.jigsaw.jigsaw.shared.entites;
+package com.jigsaw.jigsaw.shared.entities;
 
 import com.jigsaw.jigsaw.client.Figure;
 

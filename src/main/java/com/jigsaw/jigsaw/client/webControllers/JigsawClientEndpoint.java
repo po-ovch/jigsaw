@@ -1,4 +1,4 @@
-package com.jigsaw.jigsaw.client.web;
+package com.jigsaw.jigsaw.client.webControllers;
 
 import com.jigsaw.jigsaw.client.SharedComponents;
 import com.jigsaw.jigsaw.shared.Message;
@@ -8,7 +8,7 @@ import com.jigsaw.jigsaw.shared.MessageType;
 import com.jigsaw.jigsaw.shared.messages.FigureResponseMessage;
 import com.jigsaw.jigsaw.shared.messages.GameStatusMessage;
 import com.jigsaw.jigsaw.shared.messages.ResultMessage;
-import com.jigsaw.jigsaw.shared.entites.GameStatus;
+import com.jigsaw.jigsaw.shared.entities.GameStatus;
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.OnMessage;
 
