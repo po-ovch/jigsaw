@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane prefHeight="276.0" prefWidth="376.0" style="-fx-background-color: #84A169"
+      xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.jigsaw.jigsaw.client.viewControllers.HelloController">
+
+    <VBox fx:id="awaitPane" alignment="CENTER" layoutX="15.0" layoutY="10.0" prefHeight="257.0"
+          prefWidth="348.0" visible="false">
+        <Label layoutX="83.0" layoutY="75.0" prefHeight="90.0" prefWidth="168.0"
+               style="-fx-font-family: Arial;         -fx-font-size: 12"
+               text="Not all players are ready for the&#10; game. Please wait until &#10;other players connect."
+               textAlignment="CENTER"/>
+    </VBox>
+
+</Pane>
