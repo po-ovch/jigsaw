@@ -1,8 +1,8 @@
 package com.jigsaw.jigsaw.client.viewControllers;
 
-import com.jigsaw.jigsaw.endpoint.shared.GameStatistics;
+import com.jigsaw.jigsaw.shared.entites.GameStatistics;
 import com.jigsaw.jigsaw.client.JigsawApplication;
-import com.jigsaw.jigsaw.endpoint.shared.Result;
+import com.jigsaw.jigsaw.shared.entites.Result;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

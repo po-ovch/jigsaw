@@ -1,12 +1,12 @@
 package com.jigsaw.jigsaw.server.web;
 
-import com.jigsaw.jigsaw.endpoint.Message;
-import com.jigsaw.jigsaw.endpoint.MessageDecoder;
-import com.jigsaw.jigsaw.endpoint.MessageEncoder;
-import com.jigsaw.jigsaw.endpoint.MessageType;
-import com.jigsaw.jigsaw.endpoint.messages.FigureRequestMessage;
-import com.jigsaw.jigsaw.endpoint.messages.GameStatisticsMessage;
-import com.jigsaw.jigsaw.endpoint.messages.RegisterMessage;
+import com.jigsaw.jigsaw.shared.Message;
+import com.jigsaw.jigsaw.shared.MessageDecoder;
+import com.jigsaw.jigsaw.shared.MessageEncoder;
+import com.jigsaw.jigsaw.shared.MessageType;
+import com.jigsaw.jigsaw.shared.messages.FigureRequestMessage;
+import com.jigsaw.jigsaw.shared.messages.GameStatisticsMessage;
+import com.jigsaw.jigsaw.shared.messages.RegisterMessage;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;

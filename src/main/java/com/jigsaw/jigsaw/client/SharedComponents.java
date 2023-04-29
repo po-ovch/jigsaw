@@ -1,8 +1,8 @@
 package com.jigsaw.jigsaw.client;
 
 import com.jigsaw.jigsaw.client.web.ServerConnection;
-import com.jigsaw.jigsaw.endpoint.shared.FigureInfo;
-import com.jigsaw.jigsaw.endpoint.shared.GameSettings;
+import com.jigsaw.jigsaw.shared.entites.FigureInfo;
+import com.jigsaw.jigsaw.shared.entites.GameSettings;
 
 public class SharedComponents {
     public static ServerConnection server = new ServerConnection();

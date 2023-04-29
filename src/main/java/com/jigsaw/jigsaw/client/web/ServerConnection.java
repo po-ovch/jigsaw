@@ -1,9 +1,9 @@
 package com.jigsaw.jigsaw.client.web;
 
-import com.jigsaw.jigsaw.endpoint.messages.FigureRequestMessage;
-import com.jigsaw.jigsaw.endpoint.messages.GameStatisticsMessage;
-import com.jigsaw.jigsaw.endpoint.messages.RegisterMessage;
-import com.jigsaw.jigsaw.endpoint.shared.GameStatistics;
+import com.jigsaw.jigsaw.shared.messages.FigureRequestMessage;
+import com.jigsaw.jigsaw.shared.messages.GameStatisticsMessage;
+import com.jigsaw.jigsaw.shared.messages.RegisterMessage;
+import com.jigsaw.jigsaw.shared.entites.GameStatistics;
 import jakarta.websocket.EncodeException;
 import jakarta.websocket.Session;
 import org.glassfish.tyrus.client.ClientManager;
@@ -16,7 +16,7 @@ public class ServerConnection {
     private int playerIndex;
 
     public ServerConnection() {
-        String server = "ws://localhost:7000/websockets/start";
+        String server = "ws://localhost:7001/websockets/start";
         var client = ClientManager.createClient();
         try {
             this.session = client.connectToServer(JigsawClientEndpoint.class, new URI(server));
