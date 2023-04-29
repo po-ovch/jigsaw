@@ -72,7 +72,7 @@ public class StartController {
         set.add(JigsawServerEndpoint.class);
 
         try {
-            var server = new Server("localhost", 7000, "/websockets", null, set);
+            var server = new Server("localhost", 7001, "/websockets", null, set);
             server.start();
             return true;
         } catch (Exception e) {

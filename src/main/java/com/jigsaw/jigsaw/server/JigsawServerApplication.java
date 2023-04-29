@@ -42,6 +42,5 @@ public class JigsawServerApplication extends Application {
         for (var clientSocket : StartController.clientSockets) {
             clientSocket.close();
         }
-        DbUtils.closeServer();
     }
 }
