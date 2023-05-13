@@ -10,7 +10,6 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="jigsaw" target="17" />
       <module name="jigsaw server" target="17" />
     </bytecodeTargetLevel>
   </component>

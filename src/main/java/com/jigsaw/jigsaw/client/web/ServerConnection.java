@@ -41,6 +41,7 @@ public class ServerConnection {
 
     public void sendResult(GameStatistics gameStatistics) {
         var message = new GameStatisticsMessage(gameStatistics);
+        System.out.println("HUI2");
         sendObjectSafely(message);
     }
 

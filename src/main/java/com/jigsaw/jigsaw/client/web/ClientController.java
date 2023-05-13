@@ -23,6 +23,7 @@ public class ClientController {
     }
 
     public void gotResult(Result result) {
+        System.out.println("HHHHH");
         HelloController.showResults(result);
     }
 }

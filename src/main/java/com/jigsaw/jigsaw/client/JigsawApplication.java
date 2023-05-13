@@ -1,6 +1,7 @@
 package com.jigsaw.jigsaw.client;
 
 import com.jigsaw.jigsaw.SocketWrapper;
+import com.jigsaw.jigsaw.client.viewControllers.HelloController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,7 +10,6 @@ import javafx.stage.Stage;
 import java.io.*;
 
 public class JigsawApplication extends Application {
-    public static Stage startStage;
     public static SocketWrapper clientSocket;
 
     public static void main(String[] args) {
@@ -26,7 +26,7 @@ public class JigsawApplication extends Application {
 
         stage.show();
 
-        startStage = stage;
+        HelloController.currentStage = stage;
     }
 
     private void onClose() {

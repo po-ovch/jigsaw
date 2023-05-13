@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Objects;
 
 import static com.jigsaw.jigsaw.client.SharedComponents.server;
 import static com.jigsaw.jigsaw.client.SharedComponents.settings;
@@ -27,49 +28,49 @@ import static com.jigsaw.jigsaw.client.SharedComponents.settings;
 public class HelloController {
     public static Stage currentStage;
 
-    public VBox registerPane;
-    public VBox awaitPane;
     public VBox startGamePane;
-    public VBox resultPane;
-    public VBox topPlayersPane;
-
     public Button startGameButton;
-    public Button quitButton;
     public TextField playerNameField;
-    public VBox serverDisconnectedPane;
     public static Label resultLabel;
-    public VBox partnerDisconnectedPane;
-    public VBox awaitFinishPane;
     public static Label resultPlayerNameLabel;
     public TableView<GameStatistics> tableView;
-    public Label problemTopLabel;
 
     private boolean wasStartPaneVisible;
 
-    private static Stage spawnNewWindow(String path, String title) {
-        FXMLLoader fxmlLoader
-                = new FXMLLoader(JigsawApplication.class.getResource(path + "-view" + ".fxml"));
-        Scene scene;
+    protected static void spawnNewWindow(String path, String title, boolean closePrevStage) {
         try {
-            scene = new Scene(fxmlLoader.load());
+            FXMLLoader fxmlLoader = new FXMLLoader(JigsawApplication.class.getResource(path + "-view" + ".fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Platform.runLater(
+                    () -> {
+                        Stage stage = new Stage();
+
+                        stage.setResizable(false);
+                        stage.initModality(Modality.APPLICATION_MODAL);
+                        stage.setTitle(title);
+                        stage.setScene(scene);
+                        stage.show();
+                        if (currentStage.isShowing() && closePrevStage) {
+                            System.out.println("PRINT");
+                            System.out.println(currentStage);
+                            System.out.println(currentStage.isShowing());
+                            currentStage.close();
+
+                            System.out.println("PRINT2");
+                        }
+                        if (Objects.equals(path, "game")) {
+                            GameController.gameStage = stage;
+                        } else {
+                            currentStage = stage;
+                        }
+                    }
+            );
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        Stage stage = new Stage();
-        stage.setMinHeight(380);
-        stage.setMinWidth(500);
-        stage.setResizable(false);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle(title);
-        stage.setScene(scene);
-
-//        stage.setOnCloseRequest(windowEvent -> onClosing());
-        stage.show();
-        currentStage.close();
-        return stage;
     }
 
+    // Первое окно
     @FXML
     public void onSubmitButtonClick() {
         if (!checkName(playerNameField.getText())) {
@@ -81,7 +82,6 @@ public class HelloController {
             return;
         }
         server.registerPlayer(playerNameField.getText());
-        createTable();
     }
 
     private static boolean checkName(String name) {
@@ -89,43 +89,26 @@ public class HelloController {
     }
 
     public static void awaitGame() {
-        currentStage = spawnNewWindow("await", "Jigsaw");
+        spawnNewWindow("await", "Wait for game", true);
     }
 
     public static void startGame() {
-        currentStage = spawnNewWindow("start-game", "Game");
+        spawnNewWindow("start-game", "Start the game", true);
     }
 
+    // Второе окно
     @FXML
     protected void onStartButtonClick() {
-        currentStage = spawnNewWindow("game", "Game");
+        spawnNewWindow("game", "Game", true);
 
         startGameButton.setText("Play again");
-        quitButton.setVisible(true);
     }
 
     public void onQuitButtonClick() {
-        JigsawApplication.startStage.close();
-    }
-
-    private void onClosing() {
-        GameController.timeline.stop();
         currentStage.close();
-
-        switch (GameController.closingStatus) {
-            case ServerDisconnected ->
-                    currentStage = spawnNewWindow("server-disconnected", "Server disconnected");
-            case PartnerDisconnected -> retryDueToPartner();
-            case TimeEnded, Close -> {
-                if (settings.isMultiplayer) {
-                    currentStage = spawnNewWindow("await-finish", "Game");
-                }
-                Platform.runLater(this::sendStatistics);
-            }
-        }
     }
 
-    private void sendStatistics() {
+    protected static void sendStatistics() {
         var finish = LocalDateTime.now();
         long endTime = (new Date()).getTime();
         long difference = endTime - GameController.startTime;
@@ -136,34 +119,37 @@ public class HelloController {
         var result = new GameStatistics(settings.playerName, GameController.madeMovesCounter,
                 time, finish.format(dtFormatter));
         server.sendResult(result);
+        System.out.println("HUI1");
     }
 
     public static void showResults(Result result) {
+        System.out.println("HUI");
         Platform.runLater(() -> {
             resultLabel.setText("Winner: " + result.winnerName + "\n" +
                     "Figures made: " + GameController.madeMovesCounter + "\n" +
                     "Overall game time: " + result.overallTime);
             resultPlayerNameLabel.setText("Your name: " + result.playerName);
-            currentStage = spawnNewWindow("result", "Results");
+            spawnNewWindow("result", "Results", true);
         });
     }
 
-    private void retryDueToPartner() {
+    protected static void retryDueToPartner() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Win!");
         alert.setHeaderText("You are the winner because your partner left the game");
         alert.show();
 
-        currentStage = spawnNewWindow("partner-disconnected", "Partner disconnected");
+        spawnNewWindow("partner-disconnected", "Partner disconnected", true);
     }
 
     public void onWaitForPartnerButtonClick() {
-        currentStage = spawnNewWindow("await", "Wait");
+        spawnNewWindow("await", "Wait for game", true);
     }
 
     public void onTopButtonClick() {
-        wasStartPaneVisible = startGamePane.visibleProperty().get();
-        currentStage = spawnNewWindow("top-players", "Wait");
+        wasStartPaneVisible =
+                currentStage.getScene().lookup("startGamePane") != null;
+        System.out.println(wasStartPaneVisible);
 
         var writer = JigsawApplication.clientSocket.getWriter();
         var reader = JigsawApplication.clientSocket.getReader();
@@ -172,7 +158,7 @@ public class HelloController {
             writer.write("topPlayers\n");
             writer.flush();
         } catch (IOException e) {
-            currentStage = spawnNewWindow("server-disconnected", "Wait");
+            spawnNewWindow("server-disconnected", "Server disconnected", true);
             return;
         }
 
@@ -186,22 +172,22 @@ public class HelloController {
                     break;
                 }
             } catch (IOException e) {
-                currentStage = spawnNewWindow("server-disconnected", "Wait");
+                spawnNewWindow("server-disconnected", "Server disconnected", true);
                 return;
             } catch (RuntimeException e) {
-                problemTopLabel.setVisible(true);
-                tableView.setVisible(false);
                 return;
             }
         }
         tableView.setItems(gameStatistics);
+        createTable();
+        spawnNewWindow("top-players", "Top players", true);
     }
 
     public void onReturnButtonClick() {
         if (wasStartPaneVisible) {
-            currentStage = spawnNewWindow("start-game", "Jigsaw");
+            spawnNewWindow("start-game", "Start the game", true);
         } else {
-            currentStage = spawnNewWindow("result-game", "Results");
+            spawnNewWindow("result", "Results", true);
         }
     }
 

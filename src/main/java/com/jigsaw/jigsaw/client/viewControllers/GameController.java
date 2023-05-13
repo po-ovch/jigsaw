@@ -10,9 +10,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -21,9 +21,12 @@ import java.util.ResourceBundle;
 import java.util.TimeZone;
 
 import static com.jigsaw.jigsaw.client.SharedComponents.settings;
+import static com.jigsaw.jigsaw.client.viewControllers.HelloController.retryDueToPartner;
+import static com.jigsaw.jigsaw.client.viewControllers.HelloController.spawnNewWindow;
 
 
 public class GameController implements Initializable {
+    public static Stage gameStage;
     public static ClosingStatus closingStatus;
     public Pane figurePane;
 
@@ -52,13 +55,26 @@ public class GameController implements Initializable {
     @FXML
     public void onEndButtonClick() {
         closingStatus = ClosingStatus.Close;
-        HelloController.currentStage.getOnCloseRequest().handle(null);
+        GameController.timeline.stop();
+        System.out.println(GameController.closingStatus);
+
+        switch (GameController.closingStatus) {
+            case ServerDisconnected -> spawnNewWindow("server-disconnected", "Server disconnected",
+                    true);
+            case PartnerDisconnected -> retryDueToPartner();
+            case TimeEnded, Close -> {
+                if (settings.isMultiplayer) {
+                    spawnNewWindow("await-finish", "Wait for finish", true);
+                }
+                Platform.runLater(HelloController::sendStatistics);
+            }
+        }
+        gameStage.close();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         madeMovesCounter = 0;
-
         timeFormatter = new SimpleDateFormat("HH:mm:ss");
         timeFormatter.setTimeZone(TimeZone.getTimeZone("UTC"));
         startTime = (new Date()).getTime();

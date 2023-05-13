@@ -5,7 +5,7 @@
 
 <?import com.jigsaw.jigsaw.client.Table?>
 
-<AnchorPane fx:id="pane" prefHeight="296.0" prefWidth="490.0"
+<AnchorPane fx:id="pane" prefHeight="350.0" prefWidth="490.0"
             xmlns="http://javafx.com/javafx/11.0.2"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.jigsaw.jigsaw.client.viewControllers.GameController"
