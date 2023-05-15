@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane prefHeight="306.0" prefWidth="426.0" style="-fx-background-color: #84A169"
+      xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.jigsaw.server.viewControllers.StartController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+    <VBox fx:id="startPane" alignment="CENTER" prefHeight="320.0" prefWidth="446.0" spacing="20.0">
+        <Label style="-fx-font-family: Arial;      -fx-font-weight: Bold; -fx-font-size: 20"
+               text="Welcome to Jigsaw server!"/>
+        <Label style="-fx-font-family: Arial;     -fx-font-size: 15"
+               text="To run server you need to specify the following settings:"/>
+        <Pane prefHeight="81.0" prefWidth="391.0">
+            <Label layoutX="29.0" layoutY="7.0" style="-fx-font-family: Arial"
+                   text="Number of players"/>
+            <Spinner fx:id="playersNumSpinner" layoutX="241.0" layoutY="2.0" prefHeight="25.0"
+                     prefWidth="119.0">
+                <valueFactory>
+                    <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="2"
+                                                                    min="1"/>
+                </valueFactory>
+            </Spinner>
+            <Label layoutX="29.0" layoutY="41.0" style="-fx-font-family: Arial"
+                   text="Game duration in seconds"/>
+            <Slider fx:id="gameDurationSlider" layoutX="231.0" layoutY="41.0" max="120" min="7"
+                    showTickLabels="true" value="60"/>
+        </Pane>
+        <Button onAction="#onRunButtonClick" prefHeight="23.0" prefWidth="84.0" text="Run"/>
+    </VBox>
+</Pane>

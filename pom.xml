@@ -55,24 +55,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.apache.derby/derby -->
-        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derby</artifactId>
-            <version>10.15.2.0</version>
-        </dependency>
-        <!-- https://jarcasting.com/artifacts/org.apache.derby/derbyshared/ -->
-        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derbyshared</artifactId>
-            <version>10.15.2.0</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.derby/derbyclient -->
-        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derbyclient</artifactId>
-            <version>10.15.2.0</version>
-        </dependency>
         <dependency>
             <groupId>org.glassfish.tyrus</groupId>
             <artifactId>tyrus-server</artifactId>
@@ -125,7 +107,7 @@
                     <archive>
                         <manifest>
                             <mainClass>
-                                com.jigsaw.jigsaw.server.JigsawServerApplication
+                                com.jigsaw.server.JigsawServerApplication
                             </mainClass>
                         </manifest>
                     </archive>
@@ -143,7 +125,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.jigsaw.jigsaw.client.JigsawApplication</mainClass>
+                            <mainClass>com.jigsaw.client.JigsawApplication</mainClass>
                         </configuration>
                     </execution>
                 </executions>

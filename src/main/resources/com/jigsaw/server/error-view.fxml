@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane prefHeight="306.0" prefWidth="426.0" style="-fx-background-color: #84A169"
+      xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.jigsaw.server.viewControllers.StartController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <VBox fx:id="errorPane" alignment="CENTER" layoutX="14.0" prefHeight="306.0" prefWidth="403.0"
+          spacing="20.0">
+        <Label prefHeight="43.0" prefWidth="349.0"
+               style="-fx-font-family: Arial; -fx-font-weight: Bold;         -fx-font-size: 20"
+               text="Server loading error. Try again later" textAlignment="CENTER"/>
+    </VBox>
+</Pane>
