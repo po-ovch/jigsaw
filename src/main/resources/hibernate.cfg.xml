@@ -12,6 +12,6 @@
         <property name="current_session_context_class">thread</property>
 
         <property name="hibernate.dialect">org.hibernate.dialect.DerbyDialect</property>
-        <mapping class="com.jigsaw.jigsaw.server.db.Result"/>
+        <mapping class="com.jigsaw.server.db.Result"/>
     </session-factory>
 </hibernate-configuration>

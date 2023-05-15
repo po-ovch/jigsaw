@@ -10,7 +10,11 @@
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.ideaLibSources/jakarta.activation-api-1.2.2-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/glassfish/tyrus/tyrus-core/1.18/tyrus-core-1.18-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/glassfish/tyrus/tyrus-spi/1.18/tyrus-spi-1.18-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/javax/websocket/javax.websocket-api/1.1/javax.websocket-api-1.1-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/jakarta/xml/bind/jakarta.xml.bind-api/2.3.3/jakarta.xml.bind-api-2.3.3-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/jakarta/activation/jakarta.activation-api/1.2.2/jakarta.activation-api-1.2.2-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

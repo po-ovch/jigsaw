@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import com.jigsaw.client.Table?>
+
+<AnchorPane fx:id="pane" prefHeight="296.0" prefWidth="490.0" xmlns="http://javafx.com/javafx/11.0.2"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jigsaw.client.viewControllers.GameController"
+            style="-fx-background-color: #84A169"
+>
+    <VBox fx:id="infoBox">
+        <AnchorPane.rightAnchor>60</AnchorPane.rightAnchor>
+        <AnchorPane.topAnchor>20</AnchorPane.topAnchor>
+    </VBox>
+
+    <Button fx:id="endGameButton" text="End game" mnemonicParsing="false" prefWidth="100"
+    onAction="#onEndButtonClick">
+        <AnchorPane.rightAnchor>49</AnchorPane.rightAnchor>
+        <AnchorPane.topAnchor>65</AnchorPane.topAnchor>
+    </Button>
+    <Label text="Playing field" textAlignment="CENTER" style="-fx-font-family: Arial;
+     -fx-font-weight: Bold; -fx-font-size: 20">
+        <AnchorPane.topAnchor>10</AnchorPane.topAnchor>
+        <AnchorPane.leftAnchor>100</AnchorPane.leftAnchor>
+    </Label>
+
+    <Table>
+        <AnchorPane.topAnchor>20</AnchorPane.topAnchor>
+        <AnchorPane.leftAnchor>0</AnchorPane.leftAnchor>
+    </Table>
+
+    <Label text="Figure" textAlignment="CENTER" style="-fx-font-family: Arial;
+     -fx-font-weight: Bold; -fx-font-size: 15">
+        <AnchorPane.topAnchor>100</AnchorPane.topAnchor>
+        <AnchorPane.rightAnchor>75</AnchorPane.rightAnchor>
+    </Label>
+    <Pane fx:id="figurePane" prefHeight="188.0" prefWidth="140.0" style="-fx-border-color: #73726D; -fx-border-radius: 20;
+            -fx-border-width: 3; -fx-background-color: #C5C1C1; -fx-background-radius: 20; -fx-background-insets: 3">
+        <AnchorPane.bottomAnchor>30</AnchorPane.bottomAnchor>
+        <AnchorPane.rightAnchor>29</AnchorPane.rightAnchor>
+    </Pane>
+    <Label fx:id="timeLabel" textAlignment="CENTER" style="-fx-font-family: Arial;
+     -fx-font-weight: Bold; -fx-font-size: 15">
+        <AnchorPane.bottomAnchor>10</AnchorPane.bottomAnchor>
+        <AnchorPane.leftAnchor>165</AnchorPane.leftAnchor>
+    </Label>
+</AnchorPane>
