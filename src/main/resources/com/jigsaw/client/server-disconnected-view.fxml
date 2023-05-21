@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane prefHeight="276.0" prefWidth="376.0" style="-fx-background-color: #84A169"
+      xmlns="http://javafx.com/javafx/11.0.2">
+
+    <VBox alignment="CENTER" layoutX="15.0" layoutY="14.0"
+          prefHeight="245.0" prefWidth="348.0">
+        <Label prefHeight="44.0" prefWidth="243.0"
+               style="-fx-font-family: Arial;     -fx-font-size: 12"
+               text="Server was disconnected. Try playing later" textAlignment="CENTER"/>
+    </VBox>
+
+</Pane>

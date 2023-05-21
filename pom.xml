@@ -17,6 +17,21 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.sun.activation</groupId>
+            <artifactId>jakarta.activation</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.activation</groupId>
+            <artifactId>jakarta.activation-api</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>6.1.7.Final</version>
+        </dependency>
+        <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>17-ea+11</version>
@@ -40,24 +55,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.apache.derby/derby -->
-        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derby</artifactId>
-            <version>10.15.2.0</version>
-        </dependency>
-        <!-- https://jarcasting.com/artifacts/org.apache.derby/derbyshared/ -->
-        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derbyshared</artifactId>
-            <version>10.15.2.0</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.derby/derbyclient -->
-        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derbyclient</artifactId>
-            <version>10.15.2.0</version>
-        </dependency>
         <dependency>
             <groupId>org.glassfish.tyrus</groupId>
             <artifactId>tyrus-server</artifactId>
@@ -110,7 +107,7 @@
                     <archive>
                         <manifest>
                             <mainClass>
-                                com.jigsaw.jigsaw.server.JigsawServerApplication
+                                com.jigsaw.server.JigsawServerApplication
                             </mainClass>
                         </manifest>
                     </archive>
@@ -128,7 +125,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.jigsaw.jigsaw.client.JigsawApplication</mainClass>
+                            <mainClass>com.jigsaw.client.JigsawApplication</mainClass>
                         </configuration>
                     </execution>
                 </executions>
