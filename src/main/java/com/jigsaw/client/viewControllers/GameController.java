@@ -4,6 +4,7 @@ import com.jigsaw.client.ClosingStatus;
 import com.jigsaw.client.SharedComponents;
 import com.jigsaw.shared.entities.FigureGenerator;
 import com.jigsaw.shared.entities.FigureInfo;
+import com.jigsaw.shared.entities.GameStatistics;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -16,9 +17,13 @@ import javafx.util.Duration;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.TimeZone;
+
+import static com.jigsaw.client.SharedComponents.*;
 
 
 public class GameController implements Initializable {
@@ -39,20 +44,6 @@ public class GameController implements Initializable {
     public static int madeMovesCounter;
     public VBox infoBox;
 
-    public static void setFigure(FigureInfo figureInfo) {
-        var figure = FigureGenerator.create(figureInfo);
-        Platform.runLater(() -> {
-            var boxChildren = figuresParentPane.getChildren();
-            boxChildren.addAll(figure.getCells());
-        });
-    }
-
-    @FXML
-    public void onEndButtonClick() {
-        closingStatus = ClosingStatus.Close;
-        HelloController.currentStage.getOnCloseRequest().handle(null);
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         madeMovesCounter = 0;
@@ -64,7 +55,7 @@ public class GameController implements Initializable {
         timeline = new Timeline(new KeyFrame(Duration.seconds(1),
                 event -> timeLabel.setText("Current time: " +
                         timeFormatter.format(new Date((new Date()).getTime() - startTime)))));
-        timeline.setCycleCount(SharedComponents.settings.gameDuration);
+        timeline.setCycleCount(settings.gameDuration);
         timeline.setOnFinished(actionEvent -> setTimer());
         timeline.play();
 
@@ -73,27 +64,63 @@ public class GameController implements Initializable {
         setFigure(SharedComponents.firstFigure);
     }
 
+    public static void setFigure(FigureInfo figureInfo) {
+        var figure = FigureGenerator.create(figureInfo);
+        Platform.runLater(() -> {
+            var boxChildren = figuresParentPane.getChildren();
+            boxChildren.addAll(figure.getCells());
+        });
+    }
+
+    @FXML
+    public void onEndButtonClick() {
+        closingStatus = ClosingStatus.Close;
+        onClose();
+    }
+
     public void setTimer() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("The end");
         alert.setHeaderText("Game time is over");
         alert.show();
         closingStatus = ClosingStatus.TimeEnded;
-        HelloController.currentStage.getOnCloseRequest().handle(null);
+        onClose();
     }
 
     private void setInfo() {
         infoBox.setMinHeight(40);
 
-        var playerNameLabel = new Label("Player name: " + SharedComponents.settings.playerName);
+        var playerNameLabel = new Label("Player name: " + settings.playerName);
         infoBox.getChildren().add(playerNameLabel);
 
-        if (SharedComponents.settings.rivalName != null) {
-            var rivalNameLabel = new Label("Rival name: " + SharedComponents.settings.rivalName);
+        if (settings.rivalName != null) {
+            var rivalNameLabel = new Label("Rival name: " + settings.rivalName);
             infoBox.getChildren().add(rivalNameLabel);
         }
 
-        var maxTimeLabel = new Label("Max time: " + SharedComponents.settings.gameDuration + " sec");
+        var maxTimeLabel = new Label("Max time: " + settings.gameDuration + " sec");
         infoBox.getChildren().add(maxTimeLabel);
+    }
+
+    private static void onClose() {
+        timeline.stop();
+        viewManager.closeGame();
+
+        if (closingStatus == ClosingStatus.Close || closingStatus == ClosingStatus.TimeEnded) {
+            var statistics = gatherStatistics();
+            server.sendResult(statistics);
+        }
+    }
+
+    private static GameStatistics gatherStatistics() {
+        var finish = LocalDateTime.now();
+        long endTime = (new Date()).getTime();
+        long difference = endTime - GameController.startTime;
+        var timeFormatter = new SimpleDateFormat("ss");
+        var time = timeFormatter.format(new Date(difference));
+        var dtFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        return new GameStatistics(settings.playerName, GameController.madeMovesCounter,
+                time, finish.format(dtFormatter));
     }
 }
