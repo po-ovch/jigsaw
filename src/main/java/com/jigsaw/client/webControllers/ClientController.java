@@ -2,20 +2,21 @@ package com.jigsaw.client.webControllers;
 
 import com.jigsaw.client.SharedComponents;
 import com.jigsaw.client.viewControllers.GameController;
-import com.jigsaw.client.viewControllers.HelloController;
 import com.jigsaw.shared.entities.FigureInfo;
 import com.jigsaw.shared.entities.GameSettings;
 import com.jigsaw.shared.entities.Result;
 
+import static com.jigsaw.client.SharedComponents.viewManager;
+
 public class ClientController {
     public void waitForOtherPlayers() {
-        HelloController.awaitGame();
+        viewManager.awaitPlayers();
     }
 
     public void readyToStartGame(GameSettings settings, FigureInfo figureInfo) {
         SharedComponents.settings = settings;
         SharedComponents.firstFigure = figureInfo;
-        HelloController.startGame();
+        viewManager.readyToStart();
     }
 
     public void gotFigure(FigureInfo newFigure) {
@@ -23,6 +24,7 @@ public class ClientController {
     }
 
     public void gotResult(Result result) {
-        HelloController.showResults(result);
+        SharedComponents.result = result;
+        viewManager.showResults();
     }
 }
