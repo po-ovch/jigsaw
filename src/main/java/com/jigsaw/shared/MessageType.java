@@ -6,5 +6,6 @@ public enum MessageType {
     FigureRequest,
     FigureResponse,
     GameStatistics,
-    Result
+    Result,
+    TopPlayers
 }

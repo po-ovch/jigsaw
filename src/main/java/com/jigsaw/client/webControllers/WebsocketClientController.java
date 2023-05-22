@@ -8,7 +8,7 @@ import com.jigsaw.shared.entities.Result;
 
 import static com.jigsaw.client.SharedComponents.viewManager;
 
-public class ClientController {
+public class WebsocketClientController {
     public void waitForOtherPlayers() {
         viewManager.awaitPlayers();
     }

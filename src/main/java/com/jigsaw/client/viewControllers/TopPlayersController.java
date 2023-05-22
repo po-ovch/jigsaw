@@ -1,6 +1,9 @@
 package com.jigsaw.client.viewControllers;
 
+import com.jigsaw.client.webControllers.HttpClient;
 import com.jigsaw.shared.entities.GameStatistics;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -20,29 +23,17 @@ public class TopPlayersController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        problemTopLabel.setVisible(false);
         createTable();
 
-        // TODO: fill table
-
-        /*ObservableList<GameStatistics> gameStatistics = FXCollections.observableArrayList();
-        while (true) {
-            try {
-                var result = GameStatistics.readResult(reader);
-                if (result != null) {
-                    gameStatistics.add(result);
-                } else {
-                    break;
-                }
-            } catch (IOException e) {
-                serverDisconnectedPane.setVisible(true);
-                return;
-            } catch (RuntimeException e) {
-                problemTopLabel.setVisible(true);
-                tableView.setVisible(false);
-                return;
-            }
+        var data = new HttpClient().getTopStatistics(10);
+        if (data == null) {
+            problemTopLabel.setVisible(true);
+            tableView.setVisible(false);
+            return;
         }
-        tableView.setItems(gameStatistics);*/
+        ObservableList<GameStatistics> gameStatistics = FXCollections.observableArrayList(data);
+        tableView.setItems(gameStatistics);
     }
 
     @FXML
@@ -51,14 +42,14 @@ public class TopPlayersController implements Initializable {
     }
 
     private void createTable() {
-        var loginCol = new TableColumn<GameStatistics, String>("Login");
+        var nameCol = new TableColumn<GameStatistics, String>("Player name");
         var endCol = new TableColumn<GameStatistics, String>("Finish DateTime");
         var movesMade = new TableColumn<GameStatistics, String>("Moves made");
         var timeSpent = new TableColumn<GameStatistics, String>("Time spent");
 
-        tableView.getColumns().addAll(loginCol, endCol, movesMade, timeSpent);
+        tableView.getColumns().addAll(nameCol, endCol, movesMade, timeSpent);
 
-        loginCol.setCellValueFactory(
+        nameCol.setCellValueFactory(
                 new PropertyValueFactory<>("playerName")
         );
         endCol.setCellValueFactory(

@@ -10,6 +10,8 @@ module com.jigsaw.jigsaw {
     requires org.glassfish.tyrus.client;
     requires jakarta.persistence;
     requires org.hibernate.orm.core;
+    requires jdk.httpserver;
+    requires java.net.http;
 
 
     opens com.jigsaw.client to javafx.fxml;

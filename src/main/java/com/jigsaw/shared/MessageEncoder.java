@@ -12,17 +12,6 @@ import java.nio.ByteBuffer;
 public class MessageEncoder implements Encoder.Binary<Message> {
 
     @Override
-    public void init(EndpointConfig config) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void destroy() {
-        // TODO Auto-generated method stub
-    }
-
-    @Override
     public ByteBuffer encode(Message message) throws EncodeException {
         var out = new ByteArrayOutputStream();
         try {

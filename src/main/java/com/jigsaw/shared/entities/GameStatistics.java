@@ -1,9 +1,5 @@
 package com.jigsaw.shared.entities;
 
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -41,28 +37,6 @@ public class GameStatistics implements Serializable, Comparable<GameStatistics> 
                figuresMappedNum + "\n" +
                playedTime + "\n" +
                endTime + "\n";
-    }
-
-    public static GameStatistics readResult(BufferedReader reader) throws IOException {
-        String[] info = new String[4];
-        for (int i = 0; i < 4; i++) {
-            String str = reader.readLine();
-            if (str.equals("problem")) {
-                throw new RuntimeException();
-            } else if (str.equals("end")) {
-                return null;
-            } else {
-                info[i] = str;
-            }
-        }
-        return new GameStatistics(info);
-    }
-
-    public void writeResult(BufferedWriter writer) throws IOException {
-        writer.write(playerName + "\n");
-        writer.write(figuresMappedNum + "\n");
-        writer.write(playedTime + "\n");
-        writer.write(endTime + "\n");
     }
 
     public String getPlayerName() {

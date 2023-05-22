@@ -12,16 +12,6 @@ import java.nio.ByteBuffer;
 public class MessageDecoder implements Decoder.Binary<Message> {
 
     @Override
-    public void init(EndpointConfig config) {
-
-    }
-
-    @Override
-    public void destroy() {
-
-    }
-
-    @Override
     public Message decode(ByteBuffer b) throws DecodeException {
         Message message = null;
         var in = new ByteArrayInputStream(b.array());
@@ -31,7 +21,6 @@ public class MessageDecoder implements Decoder.Binary<Message> {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        //Message message = JsonUtils.getObject(s, Message.class);
         return message;
     }
 

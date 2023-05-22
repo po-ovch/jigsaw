@@ -11,15 +11,15 @@ import org.glassfish.tyrus.client.ClientManager;
 import java.io.IOException;
 import java.net.URI;
 
-public class ServerConnection {
+public class WebsocketClient {
     private Session session;
     private int playerIndex;
 
-    public ServerConnection() {
+    public WebsocketClient() {
         String server = "ws://localhost:7001/websockets/play";
         var client = ClientManager.createClient();
         try {
-            this.session = client.connectToServer(JigsawClientEndpoint.class, new URI(server));
+            this.session = client.connectToServer(WebsocketClientHandler.class, new URI(server));
         } catch (Exception e) {
             e.printStackTrace();
         }

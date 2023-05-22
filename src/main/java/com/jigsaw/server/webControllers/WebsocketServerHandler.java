@@ -12,8 +12,8 @@ import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint(value = "/play", encoders = MessageEncoder.class, decoders = MessageDecoder.class)
-public class JigsawServerEndpoint {
-    private final ServerController serverController = new ServerController();
+public class WebsocketServerHandler {
+    private final WebsocketServerController serverController = new WebsocketServerController();
 
     @OnMessage
     public void communicate(Message message, Session session) {
