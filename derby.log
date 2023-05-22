@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Mon May 22 17:47:07 MSK 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-0188-43ed-a1b8-000002dd1168 
+on database directory /Users/ltulyavko/java/jigsaw/resultsDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@3d494fbf 
+Loaded from file:/Users/ltulyavko/.m2/repository/org/apache/derby/derby/10.13.1.1/derby-10.13.1.1.jar
+java.vendor=Oracle Corporation
+java.runtime.version=20.0.1+9-29
+user.dir=/Users/ltulyavko/java/jigsaw
+os.name=Mac OS X
+os.arch=aarch64
+os.version=13.3.1
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
