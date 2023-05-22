@@ -25,12 +25,7 @@ public class ResultDAO {
     public List<Result> findAll() {
         List<Result> users = new ArrayList<>();
         try (var session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
-//            session.createQuery("from Result", Result.class).list();
-//            CriteriaQuery<Result> q = session.getCriteriaBuilder().createQuery(Result.class);
-//            Root<Result> r = q.from(Result.class);
-//            q.select(r);
-//            users = session.createQuery(q).list();
-            users = session.createQuery("from Result", Result.class).list();
+            users = session.createQuery("from Result r ORDER BY r.figuresMappedNum desc", Result.class).list();
         } catch (Exception e) {
             System.out.println(e);
         }

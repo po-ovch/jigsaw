@@ -19,7 +19,6 @@ public class HelloController {
             return;
         }
         if (!server.isOpen()) {
-            // TODO: server disconnected view??
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Server connection");
             alert.setHeaderText("Can't connect to the server, check if it is running");
