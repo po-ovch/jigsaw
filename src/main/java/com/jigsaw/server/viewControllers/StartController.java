@@ -79,7 +79,7 @@ public class StartController {
     }
 
     private void runHttpServer() throws IOException {
-        var server = HttpServer.create(new InetSocketAddress("localhost", 8001), 0);
+        var server = HttpServer.create(new InetSocketAddress("localhost", 7001), 0);
         server.createContext("/players", new HttpHandler());
         server.setExecutor(Executors.newFixedThreadPool(10));
         server.start();
