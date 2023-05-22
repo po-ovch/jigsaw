@@ -1,7 +1,6 @@
 package com.jigsaw.server.db;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "results")

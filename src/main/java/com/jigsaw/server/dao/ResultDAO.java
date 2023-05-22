@@ -2,11 +2,10 @@ package com.jigsaw.server.dao;
 
 import com.jigsaw.server.db.HibernateSessionFactoryUtil;
 import com.jigsaw.server.db.Result;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ResultDAO {
@@ -24,11 +23,18 @@ public class ResultDAO {
     }
 
     public List<Result> findAll() {
-        var session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        CriteriaQuery<Result> q = session.getCriteriaBuilder().createQuery(Result.class);
-        Root<Result> r = q.from(Result.class);
-        q.select(r);
-        List<Result> users = (List<Result>) session.createQuery(q).list();
+        List<Result> users = new ArrayList<>();
+        try (var session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
+//            session.createQuery("from Result", Result.class).list();
+//            CriteriaQuery<Result> q = session.getCriteriaBuilder().createQuery(Result.class);
+//            Root<Result> r = q.from(Result.class);
+//            q.select(r);
+//            users = session.createQuery(q).list();
+            users = session.createQuery("from Result", Result.class).list();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
         return users;
     }
 }

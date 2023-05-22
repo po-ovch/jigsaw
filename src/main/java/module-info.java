@@ -1,4 +1,4 @@
-module com.jigsaw.jigsaw {
+module com.jigsaw {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
@@ -12,6 +12,7 @@ module com.jigsaw.jigsaw {
     requires org.hibernate.orm.core;
     requires jdk.httpserver;
     requires java.net.http;
+    requires derby;
 
 
     opens com.jigsaw.client to javafx.fxml;
@@ -33,4 +34,5 @@ module com.jigsaw.jigsaw {
     opens com.jigsaw.shared.messages to javafx.fxml;
     exports com.jigsaw.shared.entities;
     opens com.jigsaw.shared.entities to javafx.fxml;
+    exports com.jigsaw.server.db to org.hibernate.orm.core;
 }
