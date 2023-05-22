@@ -7,7 +7,7 @@ import com.jigsaw.server.DbUtils;
 import com.jigsaw.server.SharedComponents;
 import jakarta.websocket.Session;
 
-public class ServerController {
+public class WebsocketServerController {
 
     public void registerNewPlayer(RegisterMessage message, Session session) {
         SharedComponents.manager.registerPlayer(message.playerName, session);

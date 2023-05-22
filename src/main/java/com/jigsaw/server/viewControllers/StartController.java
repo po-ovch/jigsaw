@@ -1,8 +1,9 @@
 package com.jigsaw.server.viewControllers;
 
 import com.jigsaw.server.JigsawServerApplication;
-import com.jigsaw.server.webControllers.JigsawServerEndpoint;
+import com.jigsaw.server.webControllers.WebsocketServerHandler;
 import com.jigsaw.server.SharedComponents;
+import com.jigsaw.server.webControllers.HttpHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,10 +12,13 @@ import javafx.scene.control.Spinner;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.glassfish.tyrus.server.Server;
+import com.sun.net.httpserver.*;
 
 import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.util.*;
+import java.util.concurrent.Executors;
 
 public class StartController {
 
@@ -27,28 +31,30 @@ public class StartController {
     public Slider gameDurationSlider;
 
     public static ServerSocket server;
-    public static Thread gameSetupThread;
 
     @FXML
     public void onRunButtonClick() throws IOException {
         SharedComponents.manager.setPlayersNum(playersNumSpinner.getValue());
         SharedComponents.manager.setGameDuration((int) gameDurationSlider.getValue());
 
-        final boolean result = runServer();
+        final boolean result = runWebsocketServer();
+        runHttpServer();
+        if (result) {
+            nextScene("running-view", "Server is running");
+        } else {
+            nextScene("error-view", "Server error");
+        }
+
+        JigsawServerApplication.startStage.close();
+    }
+
+    private void nextScene(String sceneName, String title) throws IOException {
         FXMLLoader fxmlLoader;
         Stage stage = new Stage();
+        fxmlLoader =
+                new FXMLLoader(JigsawServerApplication.class.getResource(sceneName + ".fxml"));
+        stage.setTitle(title);
 
-        if (result) {
-            fxmlLoader =
-                    new FXMLLoader(JigsawServerApplication.class.getResource("running-view" + ".fxml"));
-            stage.setTitle("Server is running");
-
-        } else {
-            fxmlLoader =
-                    new FXMLLoader(JigsawServerApplication.class.getResource("error-view" +
-                            ".fxml"));
-            stage.setTitle("Server error");
-        }
         Scene scene = new Scene(fxmlLoader.load());
         stage.setResizable(false);
         stage.setOnCloseRequest(windowEvent -> onClosing());
@@ -56,12 +62,11 @@ public class StartController {
         stage.show();
 
         currentStage = stage;
-        JigsawServerApplication.startStage.close();
     }
 
-    private boolean runServer() {
+    private boolean runWebsocketServer() {
         var set = new HashSet<Class<?>>();
-        set.add(JigsawServerEndpoint.class);
+        set.add(WebsocketServerHandler.class);
 
         try {
             var server = new Server("localhost", 7001, "/websockets", null, set);
@@ -71,6 +76,13 @@ public class StartController {
             e.printStackTrace();
             return false;
         }
+    }
+
+    private void runHttpServer() throws IOException {
+        var server = HttpServer.create(new InetSocketAddress("localhost", 8001), 0);
+        server.createContext("/players", new HttpHandler());
+        server.setExecutor(Executors.newFixedThreadPool(10));
+        server.start();
     }
 
     private void onClosing() {

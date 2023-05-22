@@ -13,8 +13,8 @@ import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.OnMessage;
 
 @ClientEndpoint(encoders = MessageEncoder.class, decoders = MessageDecoder.class)
-public class JigsawClientEndpoint {
-    private final ClientController clientController = new ClientController();
+public class WebsocketClientHandler {
+    private final WebsocketClientController clientController = new WebsocketClientController();
 
     @OnMessage
     public void onMessage(Message message) {

@@ -1,7 +1,7 @@
 package com.jigsaw.client;
 
 import com.jigsaw.client.viewControllers.ViewManager;
-import com.jigsaw.client.webControllers.ServerConnection;
+import com.jigsaw.client.webControllers.WebsocketClient;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -13,7 +13,7 @@ public class JigsawApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         SharedComponents.viewManager = new ViewManager(stage);
-        SharedComponents.server = new ServerConnection();
+        SharedComponents.server = new WebsocketClient();
     }
 
     public static void main(String[] args) {
